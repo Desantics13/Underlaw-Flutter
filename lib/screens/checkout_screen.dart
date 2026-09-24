@@ -69,8 +69,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     try {
       final init = await ApiService.iniciarPago(formData: formData, cart: cartPayload);
       final reference = init['reference'] as String;
+      if (!mounted) return;
 
       final status = await openWompiCheckout(
+        context: context,
         publicKey: init['publicKey'] as String,
         reference: reference,
         amountInCents: init['amountInCents'] as int,
@@ -80,12 +82,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
       if (status == 'APPROVED') {
         await ApiService.confirmarPago(reference);
         cart.vaciar();
+        if (!mounted) return;
         setState(() => _step = _CheckoutStep.aprobado);
       } else {
         await ApiService.cancelarPago(reference, status ?? 'VOIDED');
+        if (!mounted) return;
         setState(() => _step = _CheckoutStep.rechazado);
       }
     } catch (e) {
+      if (!mounted) return;
       setState(() {
         _step = _CheckoutStep.formulario;
         _error = '$e';

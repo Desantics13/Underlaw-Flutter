@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+  Página wrapper que corre DENTRO del WebView en Android/iOS para abrir el
+  checkout de Wompi. Flutter (lib/services/wompi_checkout_mobile.dart) carga
+  este archivo y, una vez que termina de cargar, llama a
+  abrirCheckout(configJson) vía runJavaScript().
+
+  El resultado (o la cancelación) se manda de vuelta a Dart por el canal
+  JavaScript "WompiResult", que Flutter escucha con addJavaScriptChannel.
+
+  Misma lógica que src/pages/Products.jsx en la web real, incluido el
+  workaround del cierre manual (ver comentario más abajo).
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout Wompi</title>
+  <style>
+    html, body { margin: 0; padding: 0; background: #060606; height: 100%; }
+  </style>
+  <script src="https://checkout.wompi.co/widget.js"></script>
+</head>
+<body>
+  <script>
+    function enviarResultado(status) {
+      if (window.WompiResult && window.WompiResult.postMessage) {
+        window.WompiResult.postMessage(status === undefined || status === null ? '' : status);
+      }
+    }
+
+    function abrirCheckout(configJson) {
+      var config = JSON.parse(configJson);
+      var settled = false;
+
+      // El SDK de Wompi NO llama al callback de open() cuando el usuario
+      // cierra el widget manualmente (X, Esc, "volver al comercio") — solo le
+      // agrega el atributo "hidden" a su propio modal (.waybox-backdrop).
+      // Mismo workaround por DOM que la web real.
+      var observer = new MutationObserver(function (mutations) {
+        if (settled) return;
+        for (var i = 0; i < mutations.length; i++) {
+          var el = mutations[i].target;
+          if (el instanceof HTMLElement && el.classList.contains('waybox-backdrop') && el.hasAttribute('hidden')) {
+            settled = true;
+            observer.disconnect();
+            enviarResultado('');
+            return;
+          }
+        }
+      });
+      observer.observe(document.body, { subtree: true, attributes: true, attributeFilter: ['hidden'] });
+
+      var checkout = new WidgetCheckout(config);
+      checkout.open(function (result) {
+        if (settled) return;
+        settled = true;
+        observer.disconnect();
+        var status = result && result.transaction ? result.transaction.status : '';
+        enviarResultado(status);
+      });
+    }
+  </script>
+</body>
+</html>

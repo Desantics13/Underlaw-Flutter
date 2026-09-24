@@ -12,6 +12,7 @@ library;
 
 import 'dart:async';
 import 'dart:js_interop';
+import 'package:flutter/widgets.dart';
 import 'package:web/web.dart' as web;
 
 @JS('WidgetCheckout')
@@ -21,6 +22,7 @@ extension type _WidgetCheckout._(JSObject _) implements JSObject {
 }
 
 Future<String?> openWompiCheckout({
+  required BuildContext context,
   required String publicKey,
   required String reference,
   required int amountInCents,
