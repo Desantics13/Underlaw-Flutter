@@ -91,7 +91,11 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Text('LEGACY OF LUXURY · EST. MMXXVI', style: kickerStyle(), textAlign: TextAlign.center),
           const SizedBox(height: 20),
-          Text('UNDERLAW', style: serifTitle(size: 64), textAlign: TextAlign.center),
+          // FittedBox: en celulares angostos reduce la letra en vez de partir la palabra.
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text('UNDERLAW', style: serifTitle(size: 64), maxLines: 1, softWrap: false),
+          ),
           const SizedBox(height: 16),
           Text(
             'Under the rules, only yours.',

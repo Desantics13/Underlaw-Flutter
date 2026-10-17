@@ -12,16 +12,18 @@ class TopNav extends StatelessWidget implements PreferredSizeWidget {
 
   const TopNav({super.key, required this.currentIndex, required this.onSelect});
 
+  static const double barHeight = 64;
+
   @override
-  Size get preferredSize => const Size.fromHeight(64);
+  Size get preferredSize => const Size.fromHeight(barHeight);
 
   @override
   Widget build(BuildContext context) {
     final cantidad = context.watch<CartModel>().cantidadTotal;
+    final topInset = MediaQuery.paddingOf(context).top;
 
     return Container(
-      height: preferredSize.height,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.fromLTRB(20, topInset + 12, 20, 0),
       decoration: const BoxDecoration(
         color: AppColors.bgPrimary,
         border: Border(bottom: BorderSide(color: AppColors.border)),

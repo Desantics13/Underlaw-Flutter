@@ -44,7 +44,12 @@ class _RootShellState extends State<RootShell> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TopNav(currentIndex: _currentIndex, onSelect: _goTo),
+      // La barra de estado del celular (hora, cámara) queda por encima del nav:
+      // sumamos su alto + un respiro para que los botones no se topen con ella.
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(TopNav.barHeight + MediaQuery.paddingOf(context).top + 12),
+        child: TopNav(currentIndex: _currentIndex, onSelect: _goTo),
+      ),
       body: IndexedStack(
         index: _currentIndex,
         children: [
