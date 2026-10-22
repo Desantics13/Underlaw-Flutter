@@ -51,6 +51,10 @@ dependencies:
   # WebView para abrir el checkout de Wompi en Android/iOS (JS interop de
   # dart:js_interop solo existe en Flutter Web)
   webview_flutter: ^4.9.0
+  flutter_animate: ^4.5.2
+  shimmer: ^4.0.0
+  material_symbols_icons: ^4.2960.0
+  flutter_slidable: ^4.0.3
 
 dev_dependencies:
   flutter_test:
