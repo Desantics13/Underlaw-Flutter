@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "fecha": "2026-10-31 12:09",
+    "fuente": "mysql",
+    "fecha_corte": "2026-09-30",
+    "pedidos_aprobados": 3727,
+    "items": 9441
+  },
+  "p1_demanda": {
+    "todas": {
+      "ganador": "Random Forest",
+      "semanas_entrenamiento": 83,
+      "semanas_prueba": 16,
+      "modelos": {
+        "Regresión lineal": {
+          "CV_RMSE": 66.357,
+          "MAE": 42.836,
+          "RMSE": 51.218,
+          "MAPE_%": 18.41,
+          "R2": 0.3066
+        },
+        "Random Forest": {
+          "CV_RMSE": 37.55,
+          "MAE": 29.789,
+          "RMSE": 34.675,
+          "MAPE_%": 13.48,
+          "R2": 0.6822
+        },
+        "Gradient Boosting": {
+          "CV_RMSE": 38.64,
+          "MAE": 34.151,
+          "RMSE": 46.411,
+          "MAPE_%": 17.15,
+          "R2": 0.4307
+        }
+      }
+    },
+    "Camisetas": {
+      "ganador": "Random Forest",
+      "semanas_entrenamiento": 83,
+      "semanas_prueba": 16,
+      "modelos": {
+        "Regresión lineal": {
+          "CV_RMSE": 84.365,
+          "MAE": 34.403,
+          "RMSE": 41.311,
+          "MAPE_%": 25.2,
+          "R2": -0.1706
+        },
+        "Random Forest": {
+          "CV_RMSE": 23.6,
+          "MAE": 21.184,
+          "RMSE": 27.047,
+          "MAPE_%": 16.0,
+          "R2": 0.4982
+        },
+        "Gradient Boosting": {
+          "CV_RMSE": 24.515,
+          "MAE": 32.745,
+          "RMSE": 41.986,
+          "MAPE_%": 26.78,
+          "R2": -0.2092
+        }
+      }
+    },
+    "Hoodies": {
+      "ganador": "Random Forest",
+      "semanas_entrenamiento": 83,
+      "semanas_prueba": 16,
+      "modelos": {
+        "Regresión lineal": {
+          "CV_RMSE": 11.683,
+          "MAE": 11.53,
+          "RMSE": 16.772,
+          "MAPE_%": 25.99,
+          "R2": -0.0718
+        },
+        "Random Forest": {
+          "CV_RMSE": 7.87,
+          "MAE": 11.466,
+          "RMSE": 14.853,
+          "MAPE_%": 28.69,
+          "R2": 0.1594
+        },
+        "Gradient Boosting": {
+          "CV_RMSE": 8.713,
+          "MAE": 11.444,
+          "RMSE": 15.371,
+          "MAPE_%": 28.21,
+          "R2": 0.0998
+        }
+      }
+    },
+    "Pantalones": {
+      "ganador": "Random Forest",
+      "semanas_entrenamiento": 83,
+      "semanas_prueba": 16,
+      "modelos": {
+        "Regresión lineal": {
+          "CV_RMSE": 25.585,
+          "MAE": 4.122,
+          "RMSE": 5.125,
+          "MAPE_%": 22.27,
+          "R2": -0.1484
+        },
+        "Random Forest": {
+          "CV_RMSE": 5.9,
+          "MAE": 4.112,
+          "RMSE": 5.296,
+          "MAPE_%": 19.93,
+          "R2": -0.226
+        },
+        "Gradient Boosting": {
+          "CV_RMSE": 6.542,
+          "MAE": 5.718,
+          "RMSE": 7.035,
+          "MAPE_%": 28.84,
+          "R2": -1.1634
+        }
+      }
+    },
+    "Accesorios": {
+      "ganador": "Gradient Boosting",
+      "semanas_entrenamiento": 83,
+      "semanas_prueba": 16,
+      "modelos": {
+        "Regresión lineal": {
+          "CV_RMSE": 14.064,
+          "MAE": 9.147,
+          "RMSE": 11.693,
+          "MAPE_%": 28.36,
+          "R2": 0.4712
+        },
+        "Random Forest": {
+          "CV_RMSE": 11.857,
+          "MAE": 7.328,
+          "RMSE": 9.691,
+          "MAPE_%": 25.29,
+          "R2": 0.6368
+        },
+        "Gradient Boosting": {
+          "CV_RMSE": 11.476,
+          "MAE": 6.196,
+          "RMSE": 8.802,
+          "MAPE_%": 24.79,
+          "R2": 0.7004
+        }
+      }
+    }
+  },
+  "p2_recompra": {
+    "ganador": "Random Forest",
+    "filas_entrenamiento": 1931,
+    "filas_prueba": 3215,
+    "tasa_recompra_entrenamiento": 0.4878,
+    "tasa_recompra_prueba": 0.4193,
+    "cortes": [
+      "2025-01-01",
+      "2025-02-01",
+      "2025-03-01",
+      "2025-04-01",
+      "2025-05-01",
+      "2025-06-01",
+      "2025-07-01",
+      "2025-08-01",
+      "2025-09-01",
+      "2025-10-01",
+      "2025-11-01",
+      "2025-12-01",
+      "2026-01-01",
+      "2026-02-01",
+      "2026-03-01",
+      "2026-04-01",
+      "2026-05-01",
+      "2026-06-01",
+      "2026-07-01",
+      "2026-08-01"
+    ],
+    "corte_prueba_desde": "2026-02-01",
+    "modelos": {
+      "Regresión logística": {
+        "CV_ROC_AUC": 0.714,
+        "ROC_AUC": 0.7753,
+        "accuracy": 0.7185,
+        "precision": 0.6518,
+        "recall": 0.7055,
+        "F1": 0.6776
+      },
+      "Random Forest": {
+        "CV_ROC_AUC": 0.7361,
+        "ROC_AUC": 0.7756,
+        "accuracy": 0.7266,
+        "precision": 0.6759,
+        "recall": 0.6684,
+        "F1": 0.6721
+      },
+      "Red neuronal (MLP)": {
+        "CV_ROC_AUC": 0.7072,
+        "ROC_AUC": 0.7812,
+        "accuracy": 0.7238,
+        "precision": 0.6627,
+        "recall": 0.6951,
+        "F1": 0.6785
+      }
+    },
+    "importancia_variables": [
+      {
+        "variable": "recencia_dias",
+        "importancia": 0.0616,
+        "desviacion": 0.0067
+      },
+      {
+        "variable": "monto_total",
+        "importancia": 0.0395,
+        "desviacion": 0.0033
+      },
+      {
+        "variable": "antiguedad_dias",
+        "importancia": 0.0277,
+        "desviacion": 0.0016
+      },
+      {
+        "variable": "frecuencia",
+        "importancia": 0.0122,
+        "desviacion": 0.0025
+      },
+      {
+        "variable": "ticket_promedio",
+        "importancia": 0.0045,
+        "desviacion": 0.0026
+      },
+      {
+        "variable": "metodo_pago",
+        "importancia": 0.0019,
+        "desviacion": 0.0013
+      }
+    ]
+  },
+  "p3_segmentos": {
+    "k_elegido": 3,
+    "ganador": "K-means",
+    "clientes": 690,
+    "modelos": {
+      "K-means": {
+        "silueta": 0.3407,
+        "davies_bouldin": 1.057,
+        "calinski_harabasz": 461.9
+      },
+      "Mezcla gaussiana (GMM)": {
+        "silueta": 0.1889,
+        "davies_bouldin": 1.9453,
+        "calinski_harabasz": 206.93
+      },
+      "Jerárquico (Ward)": {
+        "silueta": 0.3321,
+        "davies_bouldin": 1.0394,
+        "calinski_harabasz": 397.02
+      }
+    },
+    "codo": [
+      {
+        "k": 2,
+        "inercia": 1174.09,
+        "silueta": 0.373
+      },
+      {
+        "k": 3,
+        "inercia": 882.84,
+        "silueta": 0.3407
+      },
+      {
+        "k": 4,
+        "inercia": 709.47,
+        "silueta": 0.3002
+      },
+      {
+        "k": 5,
+        "inercia": 623.17,
+        "silueta": 0.2958
+      },
+      {
+        "k": 6,
+        "inercia": 558.42,
+        "silueta": 0.2809
+      },
+      {
+        "k": 7,
+        "inercia": 500.98,
+        "silueta": 0.2709
+      },
+      {
+        "k": 8,
+        "inercia": 449.07,
+        "silueta": 0.2735
+      }
+    ],
+    "perfiles": [
+      {
+        "segmento": "Ocasionales",
+        "clientes": 142,
+        "frecuencia_anual": 3.71,
+        "ticket_promedio": 156955.0,
+        "recencia_dias": 146.5,
+        "unidades_por_pedido": 1.44,
+        "gasto_total": 364648.0
+      },
+      {
+        "segmento": "En riesgo",
+        "clientes": 262,
+        "frecuencia_anual": 3.52,
+        "ticket_promedio": 364854.0,
+        "recencia_dias": 194.5,
+        "unidades_por_pedido": 2.87,
+        "gasto_total": 1144218.0
+      },
+      {
+        "segmento": "Premium",
+        "clientes": 286,
+        "frecuencia_anual": 13.42,
+        "ticket_promedio": 389726.0,
+        "recencia_dias": 25.2,
+        "unidades_por_pedido": 2.92,
+        "gasto_total": 3459668.0
+      }
+    ],
+    "varianza_explicada_pca": [
+      0.6203,
+      0.2888
+    ]
+  }
+}

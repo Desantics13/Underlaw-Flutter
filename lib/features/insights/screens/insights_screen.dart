@@ -3,20 +3,35 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:underlaw_flutter/core/theme/app_theme.dart';
+import 'package:underlaw_flutter/features/insights/state/insights_model.dart';
 import 'package:underlaw_flutter/features/insights/widgets/graficas_section.dart';
 import 'package:underlaw_flutter/features/insights/widgets/mineria_section.dart';
 
-// Pestaña Insights: dos secciones. "Minería y predicciones" (resultados de los
-// modelos en Python) y "Gráficas" (Flutter). Hoy ambas usan datos de ejemplo.
-class InsightsScreen extends StatefulWidget {
+// Pestaña Insights: dos secciones conectadas al servicio de predicción en
+// Python (mineria/service). "Minería y predicciones" ejecuta los modelos;
+// "Gráficas" muestra las visualizaciones de la predicción elegida.
+class InsightsScreen extends StatelessWidget {
   const InsightsScreen({super.key});
 
   @override
-  State<InsightsScreen> createState() => _InsightsScreenState();
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => InsightsModel(),
+      child: const _InsightsBody(),
+    );
+  }
 }
 
-class _InsightsScreenState extends State<InsightsScreen> {
+class _InsightsBody extends StatefulWidget {
+  const _InsightsBody();
+
+  @override
+  State<_InsightsBody> createState() => _InsightsBodyState();
+}
+
+class _InsightsBodyState extends State<_InsightsBody> {
   int _seccion = 0; // 0 minería · 1 gráficas
   final _scroll = ScrollController();
 
@@ -63,8 +78,13 @@ class _InsightsScreenState extends State<InsightsScreen> {
           child: KeyedSubtree(
             key: ValueKey(_seccion),
             child: _seccion == 0
-                ? MineriaSection(onVerGraficas: () => _elegir(1))
-                : const GraficasSection(),
+                ? MineriaSection(
+                    onVerGraficas: (id) {
+                      context.read<InsightsModel>().verGraficas(id);
+                      _elegir(1);
+                    },
+                  )
+                : GraficasSection(onIrAPredicciones: () => _elegir(0)),
           ),
         ),
       ],

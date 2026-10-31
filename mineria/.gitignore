@@ -1,0 +1,10 @@
+# Entorno y secretos
+venv/
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Modelos entrenados: se regeneran con "python -m underlaw_ml.entrenar"
+# (los .json de métricas y de gráficas SÍ se suben como evidencia)
+models/*.joblib
